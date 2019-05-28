@@ -135,7 +135,7 @@ export const UkriHeader: FC<Props> = ({ routes }) => (
                 <LogoSearchWrapper>
                     <LogoAnchor href={"/"}>
                         <Logo
-                            src={require("./logo.svg")}
+                            src={require("../../src/UkriHeader/logo.svg")}
                             alt="UK Research and Innovation"
                         />
                     </LogoAnchor>

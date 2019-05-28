@@ -106,7 +106,7 @@ export const UkriHeader = ({ routes }) => (React.createElement(React.Fragment, n
         React.createElement(Centerer, null,
             React.createElement(LogoSearchWrapper, null,
                 React.createElement(LogoAnchor, { href: "/" },
-                    React.createElement(Logo, { src: require("./logo.svg"), alt: "UK Research and Innovation" })),
+                    React.createElement(Logo, { src: require("../../src/UkriHeader/logo.svg"), alt: "UK Research and Innovation" })),
                 React.createElement(BrandingHeader, null, "Funding service")))),
     React.createElement(MainNavWrapper, null,
         React.createElement(Centerer, { style: { backgroundColor: "#e4e4e4" } },
