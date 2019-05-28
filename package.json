@@ -29,7 +29,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-push": "yarn build"
+            "pre-commit": "yarn build && git add dist"
         }
     }
 }
