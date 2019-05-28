@@ -6,8 +6,7 @@
     "author": "Matt Kane <matt.kane@aerian.com>",
     "license": "MIT",
     "scripts": {
-        "build": "tsc",
-        "prepush": "yarn build"
+        "build": "tsc"
     },
     "dependencies": {
         "@govuk-react/constants": "^0.7.1",
@@ -27,5 +26,10 @@
         "@types/styled-components": "^4.1.15",
         "husky": "^2.3.0",
         "typescript": "^3.4.5"
+    },
+    "husky": {
+        "hooks": {
+            "pre-push": "yarn build"
+        }
     }
 }
