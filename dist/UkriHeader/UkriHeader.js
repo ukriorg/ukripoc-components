@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { NTA_LIGHT, LINE_HEIGHT, FONT_SIZE, MEDIA_QUERIES, SPACING } from "@govuk-react/constants";
 import styled from "styled-components";
 import { Link } from "@reach/router";
+import Auth from "@aws-amplify/auth";
+export const routes = {
+    Home: "/",
+    Opportunities: "opportunity",
+    Schedule: "/",
+    Reporting: "/",
+    "User & Organisation": "/",
+    "Award setup": "/",
+    Award: "/",
+    Outcomes: "/"
+};
 const LogoAnchor = styled("a") `
     display: inline-block;
     padding: 19px ${SPACING.SCALE_3} 19px 0;
@@ -62,6 +73,13 @@ const Centerer = styled("div") `
         }
     }
 `;
+const UserDetails = styled.div `
+    justify-self: flex-end;
+    align-self: flex-start;
+    margin-left: auto;
+    margin-top: 5px;
+    margin-right: 0;
+`;
 const MainNav = styled("nav")({
     display: "flex",
     flexFlow: "row wrap",
@@ -75,12 +93,12 @@ const MainNavItem = styled(Link) `
     justify-content: middle;
     align-items: center;
     border-right: 1px solid #999;
-    padding: 10px 19px;
+    padding: 10px 15px;
     text-decoration: none;
     color: #6a6a6a;
     line-height: 1.2em;
     vertical-align: middle;
-
+    cursor: pointer;
     &:hover {
         text-decoration: underline;
     }
@@ -93,22 +111,40 @@ const MainNavItem = styled(Link) `
         white-space: nowrap;
     }
 `;
-const outputMainNavigation = (routes) => {
-    const menu = [];
-    for (const item in routes) {
-        menu.push(React.createElement(MainNavItem, { to: routes[item] },
-            React.createElement("span", null, item)));
+const Logout = styled.button `
+    font-size: ${FONT_SIZE.SIZE_14};
+    background: none;
+    border: none;
+    font-family: ${NTA_LIGHT};
+    cursor: pointer;
+    text-decoration: underline;
+    &:hover {
+        text-decoration: none;
     }
-    return menu;
+`;
+export const UkriHeader = ({ user }) => {
+    const logout = useCallback(() => {
+        try {
+            Auth.signOut();
+        }
+        catch (error) {
+            console.log("Error!", error);
+        }
+    }, []);
+    return (React.createElement(React.Fragment, null,
+        React.createElement(TopBannerWrapper, null,
+            React.createElement(Centerer, null,
+                React.createElement(LogoSearchWrapper, null,
+                    React.createElement(LogoAnchor, { href: "/" },
+                        React.createElement(Logo, { src: require("./logo.svg"), alt: "UK Research and Innovation" })),
+                    React.createElement(BrandingHeader, null, "Funding service"),
+                    user && (React.createElement(UserDetails, null,
+                        user.getUsername(),
+                        " ",
+                        React.createElement(Logout, { onClick: logout }, "Logout")))))),
+        React.createElement(MainNavWrapper, null,
+            React.createElement(Centerer, { style: { backgroundColor: "#e4e4e4" } },
+                React.createElement(MainNav, null, Object.keys(routes).map(item => (React.createElement(MainNavItem, { to: routes[item], key: item },
+                    React.createElement("span", null, item)))))))));
 };
-export const UkriHeader = ({ routes }) => (React.createElement(React.Fragment, null,
-    React.createElement(TopBannerWrapper, null,
-        React.createElement(Centerer, null,
-            React.createElement(LogoSearchWrapper, null,
-                React.createElement(LogoAnchor, { href: "/" },
-                    React.createElement(Logo, { src: require("../../src/UkriHeader/logo.svg"), alt: "UK Research and Innovation" })),
-                React.createElement(BrandingHeader, null, "Funding service")))),
-    React.createElement(MainNavWrapper, null,
-        React.createElement(Centerer, { style: { backgroundColor: "#e4e4e4" } },
-            React.createElement(MainNav, null, outputMainNavigation(routes))))));
 export default UkriHeader;

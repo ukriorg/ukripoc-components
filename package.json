@@ -9,6 +9,7 @@
         "build": "rm -r dist && tsc"
     },
     "dependencies": {
+        "@aws-amplify/auth": "^1.2.24",
         "@govuk-react/constants": "^0.7.1",
         "@reach/router": "^1.2.1",
         "react": "^16.8.6",
