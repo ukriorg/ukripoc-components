@@ -3,16 +3,6 @@ import { NTA_LIGHT, LINE_HEIGHT, FONT_SIZE, MEDIA_QUERIES, SPACING } from "@govu
 import styled from "styled-components";
 import { Link } from "@reach/router";
 import Auth from "@aws-amplify/auth";
-export const routes = {
-    Home: "/",
-    Opportunities: "opportunity",
-    Schedule: "/",
-    Reporting: "/",
-    "User & Organisation": "/",
-    "Award setup": "/",
-    Award: "/",
-    Outcomes: "/"
-};
 const LogoAnchor = styled("a") `
     display: inline-block;
     padding: 19px ${SPACING.SCALE_3} 19px 0;
@@ -122,7 +112,7 @@ const Logout = styled.button `
         text-decoration: none;
     }
 `;
-export const UkriHeader = ({ user }) => {
+export const UkriHeader = ({ user, routes = {} }) => {
     const logout = useCallback(() => {
         try {
             Auth.signOut();

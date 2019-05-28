@@ -10,19 +10,6 @@ import styled from "styled-components";
 import { Link } from "@reach/router";
 import Auth, { CognitoUser } from "@aws-amplify/auth";
 
-export const routes: {
-    [key: string]: string;
-} = {
-    Home: "/",
-    Opportunities: "opportunity",
-    Schedule: "/",
-    Reporting: "/",
-    "User & Organisation": "/",
-    "Award setup": "/",
-    Award: "/",
-    Outcomes: "/"
-};
-
 const LogoAnchor = styled("a")`
     display: inline-block;
     padding: 19px ${SPACING.SCALE_3} 19px 0;
@@ -144,9 +131,10 @@ const Logout = styled.button`
 
 interface Props {
     user?: CognitoUser;
+    routes?: { [key: string]: string };
 }
 
-export const UkriHeader: FC<Props> = ({ user }) => {
+export const UkriHeader: FC<Props> = ({ user, routes = {} }) => {
     const logout = useCallback(() => {
         try {
             Auth.signOut();
