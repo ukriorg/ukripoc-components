@@ -7,7 +7,7 @@
     "license": "MIT",
     "scripts": {
         "build": "tsc",
-        "postinstall": "yarn build"
+        "prepush": "yarn build"
     },
     "dependencies": {
         "@govuk-react/constants": "^0.7.1",
