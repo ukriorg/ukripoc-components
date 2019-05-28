@@ -162,7 +162,7 @@ export const UkriHeader: FC<Props> = ({ user }) => {
                     <LogoSearchWrapper>
                         <LogoAnchor href={"/"}>
                             <Logo
-                                src={require("./logo.svg")}
+                                src={require("../../src/UkriHeader/logo.svg")}
                                 alt="UK Research and Innovation"
                             />
                         </LogoAnchor>

@@ -136,7 +136,7 @@ export const UkriHeader = ({ user }) => {
             React.createElement(Centerer, null,
                 React.createElement(LogoSearchWrapper, null,
                     React.createElement(LogoAnchor, { href: "/" },
-                        React.createElement(Logo, { src: require("./logo.svg"), alt: "UK Research and Innovation" })),
+                        React.createElement(Logo, { src: require("../../src/UkriHeader/logo.svg"), alt: "UK Research and Innovation" })),
                     React.createElement(BrandingHeader, null, "Funding service"),
                     user && (React.createElement(UserDetails, null,
                         user.getUsername(),

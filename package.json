@@ -12,8 +12,6 @@
         "@aws-amplify/auth": "^1.2.24",
         "@govuk-react/constants": "^0.7.1",
         "@reach/router": "^1.2.1",
-        "react": "^16.8.6",
-        "react-dom": "^16.8.6",
         "styled-components": "^4.2.0"
     },
     "devDependencies": {
@@ -26,7 +24,9 @@
         "@types/storybook__react": "^4.0.1",
         "@types/styled-components": "^4.1.15",
         "husky": "^2.3.0",
-        "typescript": "^3.4.5"
+        "typescript": "^3.4.5",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6"
     },
     "husky": {
         "hooks": {
