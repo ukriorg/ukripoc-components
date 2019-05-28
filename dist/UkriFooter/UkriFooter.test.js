@@ -1,10 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { UkriHeader } from "./index";
-
-describe("UkriHeader", () => {
+import { UkriFooter } from "./index";
+describe("UkriFooter", () => {
     it("renders correctly", () => {
-        const tree = renderer.create(<UkriHeader routes={{}} />).toJSON();
+        const tree = renderer.create(React.createElement(UkriFooter, null)).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });
