@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, { FC, useCallback, useState, useEffect } from "react";
 import {
     NTA_LIGHT,
     LINE_HEIGHT,
@@ -130,7 +130,7 @@ const Logout = styled.button`
 `;
 
 interface Props {
-    user?: CognitoUser;
+    user?: CognitoUser & { attributes?: { [key: string]: string } };
     routes?: { [key: string]: string };
 }
 
@@ -143,8 +143,14 @@ export const UkriHeader: FC<Props> = ({ user, routes = {} }) => {
         }
     }, []);
 
+    const personName =
+        (!!user &&
+            !!user.attributes &&
+            `${user.attributes.name} (${user.attributes.organisation_name})`) ||
+        "";
+
     return (
-        <React.Fragment>
+        <>
             <TopBannerWrapper>
                 <Centerer>
                     <LogoSearchWrapper>
@@ -157,7 +163,7 @@ export const UkriHeader: FC<Props> = ({ user, routes = {} }) => {
                         <BrandingHeader>Funding service</BrandingHeader>
                         {user && (
                             <UserDetails>
-                                {user.getUsername()}{" "}
+                                {personName}{" "}
                                 <Logout onClick={logout}>Logout</Logout>
                             </UserDetails>
                         )}
@@ -175,7 +181,7 @@ export const UkriHeader: FC<Props> = ({ user, routes = {} }) => {
                     </MainNav>
                 </Centerer>
             </MainNavWrapper>
-        </React.Fragment>
+        </>
     );
 };
 

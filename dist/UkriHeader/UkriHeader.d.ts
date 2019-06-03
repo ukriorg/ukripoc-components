@@ -1,7 +1,11 @@
 import { FC } from "react";
 import { CognitoUser } from "@aws-amplify/auth";
 interface Props {
-    user?: CognitoUser;
+    user?: CognitoUser & {
+        attributes?: {
+            [key: string]: string;
+        };
+    };
     routes?: {
         [key: string]: string;
     };
