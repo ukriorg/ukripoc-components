@@ -143,12 +143,10 @@ export const UkriHeader: FC<Props> = ({ user, routes = {} }) => {
         }
     }, []);
 
-    const personName =
-        (!!user &&
-            !!user.attributes &&
-            `${user.attributes.name} (${user.attributes.organisation_name})`) ||
-        "";
+    const attr = (user && user.attributes) || {};
+    const org = attr["custom:organisation_name"];
 
+    const nameString = `${attr.name} ${org ? `(${org})` : ""}`;
     return (
         <>
             <TopBannerWrapper>
@@ -163,7 +161,7 @@ export const UkriHeader: FC<Props> = ({ user, routes = {} }) => {
                         <BrandingHeader>Funding service</BrandingHeader>
                         {user && (
                             <UserDetails>
-                                {personName}{" "}
+                                {nameString}{" "}
                                 <Logout onClick={logout}>Logout</Logout>
                             </UserDetails>
                         )}

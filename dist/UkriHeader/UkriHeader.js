@@ -121,10 +121,9 @@ export const UkriHeader = ({ user, routes = {} }) => {
             console.log("Error!", error);
         }
     }, []);
-    const personName = (!!user &&
-        !!user.attributes &&
-        `${user.attributes.name} (${user.attributes.organisation_name})`) ||
-        "";
+    const attr = (user && user.attributes) || {};
+    const org = attr["custom:organisation_name"];
+    const nameString = `${attr.name} ${org ? `(${org})` : ""}`;
     return (React.createElement(React.Fragment, null,
         React.createElement(TopBannerWrapper, null,
             React.createElement(Centerer, null,
@@ -133,7 +132,7 @@ export const UkriHeader = ({ user, routes = {} }) => {
                         React.createElement(Logo, { src: require("../../src/UkriHeader/logo.svg"), alt: "UK Research and Innovation" })),
                     React.createElement(BrandingHeader, null, "Funding service"),
                     user && (React.createElement(UserDetails, null,
-                        personName,
+                        nameString,
                         " ",
                         React.createElement(Logout, { onClick: logout }, "Logout")))))),
         React.createElement(MainNavWrapper, null,
